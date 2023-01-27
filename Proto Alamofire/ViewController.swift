@@ -25,12 +25,13 @@ class ViewController: UIViewController {
         let parameters : [String:String] = [
             "format" : "json",
             "action" : "query",
-            "prop" : "extracts",
+            "prop" : "extracts|pageimages",
             "exintro" : "",
             "explaintext" : "",
             "titles" : searcString,
             "indexpageids" : "",
-            "redirects" : "1"
+            "redirects" : "1",
+            "pithumbsize": "500"
           ]
         
         // responseData method returns Data object in response.value
@@ -48,7 +49,7 @@ class ViewController: UIViewController {
                 print("Failed too get respoonse \(error)")
             }
             // Value contains the Data response as optional
-            print(response.value)
+            print(response.value!)
             print("**********************************")
             // print response in console in string format
             debugPrint(response)
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
             let responseJSON: JSON = JSON(response.value!)
             // query values in response by subscripting JSON object
             let pageID = responseJSON["query"]["pageids"][0]
-            print(responseJSON)
+            print(pageID)
         }
         
         /* // Using responseDecodable function to decode API response
